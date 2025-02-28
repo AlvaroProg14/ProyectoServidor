@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title><%= Title %></title>
+  <link rel="stylesheet" href="/styles.css"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          user-select: none; /* Evita la selección de texto en todos los elementos */
+      }
+      body {
+          flex-direction: column;
+          min-height: 100vh;
+          font-family: Arial, sans-serif;
+          background-color: #e0e0e0;
+          color: #333;
+      }
+      .spacemono {
+          font-family: "Space Mono", monospace;
+          text-decoration: none;
+          color: black;
+      }
+      header {
+          background-color: #eaf820;
+          padding: 40px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #ddd;
+          width: 100%;
+      }
+      header h1 {
+          font-family: "Space Mono", monospace;
+          font-size: 1.5rem;
+          margin: 0;
+      }
+      header ul {
+          display: flex;
+          gap: 10px;
+          list-style-type: none;
+      }
+      header a {
+          color: black;
+          text-decoration: none;
+          padding: 0; 
+          background-color: transparent; 
+          transition: color 0.3s;
+      }
+      header a:hover {
+          color: #d7e424; /* Cambiar el color al pasar el mouse */
+      }
+      main {
+          padding: 40px;
+          padding-left: 100px;
+          padding-right: 100px;
+      }
+      main h1 {
+          font-family: "Space Mono", monospace;
+          font-size: 40px;
+          margin-bottom: 20px; /* Espacio debajo del título */
+      }
+      main p {
+          font-family: "Space Mono", monospace;
+      }
+      form {
+          background-color: #fff; /* Fondo blanco para el formulario */
+          border-radius: 8px; /* Bordes redondeados */
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+          padding: 20px; /* Espaciado interno */
+          display: flex;
+          flex-direction: column; /* Colocar elementos en columna */
+          gap: 15px; /* Espacio entre los elementos del formulario */
+          max-width: 400px; /* Ancho máximo del formulario */
+          margin: 0 auto; /* Centrar el formulario */
+      }
+      label {
+          font-family: "Space Mono", monospace; /* Fuente para las etiquetas */
+          font-weight: bold; /* Negrita */
+      }
+      input {
+          padding: 10px; /* Espaciado interno */
+          border: 1px solid #ddd; /* Borde gris claro */
+          border-radius: 4px; /* Bordes redondeados */
+          font-family: "Space Mono", monospace; /* Fuente para los campos de entrada */
+      }
+      button {
+          padding: 10px; /* Espaciado interno */
+          background-color: #eaf820; /* Color de fondo */
+          color: black; /* Color del texto */
+          border: none; /* Sin borde */
+          border-radius: 4px; /* Bordes redondeados */
+          cursor: pointer; /* Cambiar cursor al pasar */
+          font-family: "Space Mono", monospace; /* Fuente para el botón */
+          font-size: 1rem; /* Tamaño de fuente */
+          transition: background-color 0.3s; /* Transición suave */
+      }
+      button:hover {
+          background-color: #d7e424; /* Color de fondo al pasar el mouse */
+      }
+      footer {
+          background-color: #eaf820;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: black;
+          padding: 25px;
+      }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 class="spacemono">Mobile Monkey</h1>
+        </div>
+        <nav>
+            <ul>
+                <% if (user) { %>
+                    <li><a class="spacemono" href="/">Main</a></li>
+                    <li><a class="spacemono" href="/blogs/crear">Crear Blog</a></li>
+                    <li><a class="spacemono" href="/productos">Ver Productos</a></li>
+                    <li><a class="spacemono" href="/logout">Cerrar Sesión</a></li>
+                    <li><a class="spacemono" href="/usuarios">Ver Usuarios</a></li> 
+                <% } else { %>
+                    <li><a class="spacemono" href="/">Main</a></li>
+                    <li><a class="spacemono" href="/login">Iniciar Sesión</a></li>
+                    <li><a class="spacemono" href="/sign-up">Registrarse</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+
+        <main>
+        <br><br><br>
+       <center><h1>Crear un nuevo blog</h1></center> 
+        <form action="/blogs/crear" method="POST" enctype="multipart/form-data" class="crear">
+            <label for="title">Título</label>
+            <input type="text" name="title" required>
+            <br>
+            <label for="snippet">Resumen</label>
+            <input type="text" name="snippet" required>
+            <br>
+            <label for="body">Cuerpo del blog</label>
+            <textarea name="body" required></textarea>
+            <br>
+            <label for="image">Imagen</label>
+            <br>
+            <input type="file" name="image">
+            <br>
+            <div>
+            <button type="submit">Crear blog</button>
+            </div>
+        </form>
+        <br><br><br><br>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p class="spacemono" style="margin-bottom: 10px;">Síguenos en nuestras redes sociales:</p>
+            <div>
+                <a href="https://www.facebook.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Facebook</a>
+                <a href="https://www.twitter.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Twitter</a>
+                <a href="https://www.instagram.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Instagram</a>
+            </div>
+            <p class="spacemono" style="margin: 10px 0;">Contacto: info@mobmonkey.com | Teléfono: (123) 456-7890</p>
+            <p class="spacemono" style="margin: 10px 0;">&copy;2023 Mobile Monkey. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

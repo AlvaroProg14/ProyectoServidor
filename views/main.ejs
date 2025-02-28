@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title><%= Title %></title>
+    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="/Logo.png" alt="Logotipo de Mi Tienda">
+            <h1 class="spacemono">Mobile Monkey</h1>
+        </div>
+        <nav>
+            <ul>
+                <% if (user) { %>
+                    <li><a class="spacemono" href="/blogs/crear">Crear Blog</a></li>
+                    <li><a class="spacemono" href="/productos">Ver Productos</a></li>
+                    <li><a class="spacemono" href="/logout">Cerrar Sesión</a></li>
+                    <li><a class="spacemono" href="/usuarios">Ver Usuarios</a></li> 
+                <% } else { %>
+                    <li><a class="spacemono" href="/login">Iniciar Sesión</a></li>
+                    <li><a class="spacemono" href="/sign-up">Registrarse</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Blogs:</h1>
+        <br>
+        <p>Crear, Leer, Modificar, Eliminar</p>
+        <br>
+        <section class="main-blog">
+            <% blogs.forEach(blog => { %>
+                <div class="blog">
+                    <h2><%= blog.title %></h2>
+                    <p><%= blog.snippet %></p>
+                    <br>
+                    <div>
+                        <a href="/blogs/<%= blog._id %>">Ver más</a>
+                    </div>
+                    <% if (user) { %>
+                        <div class="main-botones">
+                            <a href="/blogs/<%= blog._id %>/editar">Editar</a>
+                            <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Eliminar</button>
+                            </form>    
+                        </div>          
+                    <% } %>
+                </div>
+            <% }); %>   
+        </section>   
+    </main>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer class="footer">
+        <div class="container">
+            <p class="spacemono" style="margin-bottom: 10px;">Síguenos en nuestras redes sociales:</p>
+            <div>
+                <a href="https://www.facebook.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Facebook</a>
+                <a href="https://www.twitter.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Twitter</a>
+                <a href="https://www.instagram.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Instagram</a>
+            </div>
+            <p class="spacemono" style="margin: 10px 0;">Contacto: info@mobmonkey.com | Teléfono: (123) 456-7890</p>
+            <p class="spacemono" style="margin: 10px 0;">&copy;2023 Mobile Monkey. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

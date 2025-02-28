@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= Title %></title>
+  <link rel="stylesheet" href="styles.css"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/Logo.png" alt="Logotipo de Mi Tienda">
+            <h1 class="spacemono">Mobile Monkey</h1>
+        </div>
+        <nav>
+            <ul>
+                <% if (user) { %>
+                    <li><a class="spacemono" href="/">Main</a></li>
+                    <li><a class="spacemono" href="/blogs/crear">Crear Blog</a></li>
+                    <li><a class="spacemono" href="/productos">Ver Productos</a></li>
+                    <li><a class="spacemono" href="/logout">Cerrar Sesión</a></li>
+                <% } else { %>
+                    <li><a class="spacemono" href="/">Main</a></li>
+                    <li><a class="spacemono" href="/login">Iniciar Sesión</a></li>
+                    <li><a class="spacemono" href="/sign-up">Registrarse</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1><%= Title %></h1>
+        <% if (users && users.length > 0) { %>
+            <div class="usuarios-container"> <!-- Contenedor para los usuarios -->
+                <% users.forEach(user => { %>
+                    <article>
+                        <strong>Usuario:</strong> <%= user.username %>
+                        <br>
+                        <strong>Email:</strong> <%= user.email %>
+                        <br>
+                        <strong>Contraseña:</strong> <%= user.password %>
+                    </article>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <p>No hay usuarios registrados.</p>
+        <% } %>
+    </main>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer class="footer">
+        <div class="container">
+            <p class="spacemono" style="margin-bottom: 10px;">Síguenos en nuestras redes sociales:</p>
+            <div>
+                <a href="https://www.facebook.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Facebook</a>
+                <a href="https://www.twitter.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Twitter</a>
+                <a href="https://www.instagram.com" target="_blank" style="margin: 0 10px; text-decoration: none; color: #333;">Instagram</a>
+            </div>
+            <p class="spacemono" style="margin: 10px 0;">Contacto: info@mobmonkey.com | Teléfono: (123) 456-7890</p>
+            <p class="spacemono" style="margin: 10px 0;">&copy;2023 Mobile Monkey. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
