@@ -1,0 +1,38 @@
+# Ignorar la carpeta node_modules, ya que las dependencias se instalarán en el contenedor
+node_modules/
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar el archivo Dockerfile y .dockerignore (ya están en el repositorio)
+Dockerfile
+.dockerignore
+
+# Ignorar archivos temporales de editor (como VSCode)
+.vscode/
+
+# Ignorar archivos de dependencias de entorno
+.env
+.env.*
+
+# Ignorar archivos de caché
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Ignorar archivos temporales del sistema operativo
+*.swp
+*.bak
+*.tmp
+
+# Ignorar carpetas de compilación o distribución (si existen)
+build/
+dist/
+
+# Ignorar archivos de pruebas (si no son necesarios para la imagen)
+test/
+tests/
+
+# Ignorar directorios específicos que no son necesarios para la app
+coverage/
+logs/
